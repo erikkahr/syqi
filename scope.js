@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    const vshaderMobile = `
+   const vshaderMobile = `
 	varying vec2 vUv;
 
 	void main(){
 		vUv = uv;
-		gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 2.5 );
+		gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 	}
 
 	`
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	      col[int(j)] = abs(p.x / p.y);
 	    }
 
-	    gl_FragColor = vec4(col, 1., 4.0);
+	    gl_FragColor = vec4(col, 1.);
 	  }
 
 	`
@@ -152,12 +152,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // document.body.appendChild( container )
 
         camera = new THREE.PerspectiveCamera(45, vw / vh, 1, 1000);
-        camera.position.set(100, 0, 800);
+        camera.position.set(0, 0, 290);
 
         scene = new THREE.Scene()
-        scene.background = new THREE.Color(0x7cbdff)
+        scene.background = new THREE.Color(0xffffff)
 
-        var light = new THREE.HemisphereLight(0x9bfff7, 0x7979ff, 900);
+        var light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
         scene.add(light);
 
         renderer = new THREE.WebGLRenderer({
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function moveShader() {
 
         window.App.gsap.to(uniforms.mouse.value, {
-            duration: 4.,
+            duration: 1.5,
             x: mouse.x,
             y: mouse.y
         })
